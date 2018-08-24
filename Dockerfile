@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:16.04
 MAINTAINER harryosmar <harryosmarsitohang@gmail.com>
 
 ENV HTTPD_PREFIX /etc/apache2
