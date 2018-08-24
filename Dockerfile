@@ -1,4 +1,4 @@
-FROM ubuntu:trusty-20180712
+FROM ubuntu:latest
 MAINTAINER harryosmar <harryosmarsitohang@gmail.com>
 
 ENV HTTPD_PREFIX /etc/apache2
