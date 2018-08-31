@@ -1,0 +1,5 @@
+/plugin-service-map
+auth.json
+/data/mysql
+/data/redis
+.vagrant/
