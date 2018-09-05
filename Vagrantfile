@@ -49,7 +49,7 @@ Vagrant.configure(2) do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = "2048"
+     vb.memory = "4048"
   end
   #
   # View the documentation for the provider you are using for more
@@ -70,8 +70,10 @@ Vagrant.configure(2) do |config|
   #   sudo apt-get install -y apache2
   # SHELL
   config.vm.provision "docker" do |d|
-    d.run "mysql:5.5", args: "--name=this-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=mpas -v '/var/data/mysql:/var/lib/mysql'"
+    d.run "mysql:5.5", args: "--name=this-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=maps -v '/var/data/mysql:/var/lib/mysql'"
     d.run "harryosmar/web-server-env-dev-service-maps", args: "-it --name=this-apache -v '/var/www/html:/var/www/html' -v '/var/www/html/\.ssh:/root/\.ssh' -v '/var/www/html/auth.json:/root/\.composer/auth.json' -p 80:80"
     d.run "redis:alpine", args: "--name=this-redis -p 6379:6379 -v '/var/data/redis:/data'"
+    d.run "elasticsearch:5-alpine", args: "--name=this-elastic -p 9200:9200 -p 9300:9300"
+    d.run "kibana:5.6.11", args: "--name=this-kibana -p 5601:5601 -e ELASTICSEARCH_URL=http://172.17.0.1:9200"
   end
 end
